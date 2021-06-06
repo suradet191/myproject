@@ -1,0 +1,74 @@
+<!-- <button type="button" class="btn btn-danger btn-floating btn-lg" id="btn-back-to-top">
+  <i class="fas fa-arrow-up"></i>
+</button> -->
+<div class="container">
+  <div class="flex-row d-flex-1">
+    <div class=" ">
+      <nav>
+        <div class="nav nav-tabs nav-fill mb-3" id="nav-tab" role="tablist">
+          <a [class]="(i==0)?'nav-item nav-link active':'nav-item nav-link'" [id]="movie.id+'-tab'" data-toggle="tab"
+            [href]="'#'+movie.id" role="tab" [aria-controls]="movie.id" [aria-selected]="(i==0)"
+            *ngFor="let movie of movies;let i = index">{{movie.name}}</a>
+
+        </div>
+      </nav>
+      <div *ngIf="iframeSrc != null" class="flex-row d-flex justify-content-center">
+        <div class="d-flex">
+          <div class="card border-dark" style="width: 18rem;">
+            <iframe *ngIf="iframeSrc != null" class="card-img-top" width="300" height="300" scrolling="no"
+              [src]="iframeSrc |safe" frameborder="0" allow="autoplay,fullscreen" allowfullscreen="true" #iframe1
+              id="iframe1"></iframe>
+            <div class="card-body">
+              <div class="d-flex justify-content-end mr-auto">
+                <button class="btn btn-secondary text-center ml-2 mb-2 w-1"
+                  *ngIf="episodePrevious && episodePrevious.ep != ''"
+                  (click)="onIframeChange(episodePrevious,movie)">ก่อนหน้า</button>
+                <button class="btn btn-primary text-center ml-2 mb-2 w-1" *ngIf="episodeNext && episodeNext.ep != ''"
+                  (click)="onIframeChange(episodeNext,movie)">ถัดไปตอนที่
+                  {{episodeNext.ep}}</button>
+              </div>
+              <h5 class="card-title">เรื่อง: {{movie.name}}</h5>
+              <h3 class="card-text">ตอนที่: {{episode.ep}}</h3>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+      <div class="tab-content " id="nav-tabContent">
+        <div [class]="(i==0)?'tab-pane fade show active':'tab-pane fade'" [id]="movie.id" role="tabpanel"
+          [aria-labelledby]="movie.id+'-tab'" *ngFor="let movie of movies;let i=index">
+
+          <div class="flex-row d-flex">
+            <div class="d-flex-4">
+              <div class="card border-dark" style="width: 18rem;">
+                <!-- <iframe class="card-img-top" width="560" height="315" [src]="episode.src |safe" frameborder="0"
+                  allow="autoplay" allowfullscreen></iframe> -->
+                <img class="card-img-top" sizes="" [src]="movie.image" alt="">
+                <div class="card-body">
+                  <h5 class="card-title">เรื่อง: {{movie.name}}</h5>
+                  <!-- <p class="card-text">ตอนที่: {{episode.ep}}</p> -->
+                  <!-- <a target="_blank" class="btn btn-primary text-center" [href]="episode.src+'?autoplay=1'"
+                    *ngFor="let episode of movie.episode">ตอนที่
+                    {{episode.ep}}</a> -->
+                </div>
+              </div>
+            </div>
+            <div class="d-flex-8 p-2 justify-content-between">
+              <button class="btn btn-primary text-center ml-2 mb-2 w-1" (click)="onIframeChange(episode,movie)"
+                *ngFor="let episode of movie.episode">ตอนที่
+                {{episode.ep}}</button>
+            </div>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+<div class="error"></div>
+<!-- <iframe width="560" height="315" [src]="'//ok.ru/videoembed/2011057031870' |safe" frameborder="0"
+                  allow="autoplay" allowfullscreen id="iframe1" name="iframe1"></iframe> -->

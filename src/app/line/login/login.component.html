@@ -1,0 +1,57 @@
+<form ngform novalidate>
+  <div class="container" style="margin-top: 70px;">
+    <div>
+      <span class="badge badge-primary">user id:</span> {{profile.userId}}<br>
+      <span class="badge badge-primary">display name:</span> {{profile.displayName}} <br>
+      <span class="badge badge-primary">status:</span> {{profile.statusMessage}}
+    </div>
+    <div class="input-group input-group-sm mb-3">
+      <div class="input-group-prepend">
+        <span class="input-group-text" id="inputGroup-sizing-sm">message</span>
+      </div>
+      <input type="text" class="form-control" aria-label="Sizing example input" [(ngModel)]="model.messageToChat"
+        ngModel aria-describedby="inputGroup-sizing-sm">
+    </div>
+    <button type="button" class="btn btn-primary btn-sm" (click)="onSendMessageToChat()">send message to chat!</button>
+    <button type="button" class="btn btn-success btn-sm" (click)="onAddLine()">@add line and prefill message</button>
+    <!-- <button type="button" class="btn btn-info btn-sm" (click)="onTest()">Test!</button> -->
+    <!-- <button type="button" class="btn btn-warning btn-sm" (click)="onReplySLineSdk()">reply message</button> -->
+    <button type="button" class="btn btn-primary btn-sm" (click)="onShareTargetPicker()">Share Target Picker</button>
+    <!-- <button mat-button color="primary" (click)="onLogin()">{{this.liffId}}</button>
+    <button mat-button color="primary" (click)="onLogout()">logout</button> -->
+  </div>
+</form>
+
+
+
+
+
+
+  <div class="container" style="margin-top: 70px;">
+    <table class="table table-hover table-striped table-bordered table-sm table-responsive">
+      <thead>
+        <tr>
+          <th>tag</th>
+          <th>description</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>picture</td>
+          <td>
+            <div style="width:200px;height:200px">
+              <img [src]="profile.pictureUrl" class="img-thumbnail" alt="Responsive image">
+            </div>
+          </td>
+        </tr>
+
+
+        <tr *ngFor="let item of model">
+          <td>{{item.h}}</td>
+          <td class="word-wrap">
+            <pre>{{item.d | json}}</pre>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
